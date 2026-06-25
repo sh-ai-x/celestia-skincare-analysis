@@ -1,5 +1,6 @@
 # Celestia Dermatology 스킨케어 성분 분석 리포트
 > Date: 2026-06-25 | env: local | dataset: `ebinvadakkan/celestia-dermatology-skincare-treatment-dataset`
+> verify-report: 5/5 PASS ✅ (재실행 일치, 차이 0)
 
 ## 분석 목표
 스킨 컨선(피부 고민)별로 어떤 성분이 추천되며, 농도와 효능이 어떻게 매핑되는지 탐색한다.
