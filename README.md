@@ -28,6 +28,32 @@
 | Bakuchiol 부재 확인 | 0/1120 | ✅ |
 | 데이터 무결성 | 1120 rows, 결측치 0 | ✅ |
 
+### 🔬 Verification Report
+
+분석 완료 후 재실행 검증(verify-report) 결과:
+
+```
+============================================================
+Celestia 가설 검증 재실행
+============================================================
+  PASS ✅  H1: Retinol → Wrinkles 100%: 36/36
+  PASS ✅  H2: Salicylic Acid → Acne >50%: 66.3%
+  PASS ✅  H3: Niacinamide → 모든 컨선: 10/10
+  PASS ✅  Bakuchiol 부재: 0/1120
+  PASS ✅  데이터 무결성: shape=(1120, 8), 결측치=0
+============================================================
+총 5/5 PASS
+기록값: 5/5
+검증: OK (차이: 0)
+```
+
+| 항목 | 값 |
+|------|-----|
+| 검증 방법 | `python3 scripts/verify_celestia.py` |
+| 재실행 일치 | 5/5 (차이 0) |
+| 최종 commit | `7696327 - Final verify-report: 5/5 PASS ✅` |
+| slop 마커 | 0 (Celestia 전체 파일) |
+
 ### Skin_Type별 처방 가이드
 | Skin Type | Open Pores 1위 | Acne 1위 | 처방 철학 |
 |-----------|---------------|----------|----------|
@@ -55,9 +81,10 @@
 │   ├── eda_pass1.py               # EDA Pass 1 (Wide distribution)
 │   ├── eda_pass2.py               # EDA Pass 2 (Concern × Ingredient)
 │   ├── eda_skin_detail.py         # Skin_Type 심층 분석
-│   ├── verify.py                  # 가설 검증
+│   ├── verify_celestia.py         # 가설 검증 (재실행용)
 │   ├── build_report.py            # 노트북 빌드
 │   ├── build_skin_detail_report.py # Skin_Type 섹션 추가
+│   ├── add_descriptions.py        # 초보자용 해석 셀 추가
 │   ├── add_todo.py                # TODO 섹션 추가
 │   └── to_html.py                 # nbconvert 백업 변환기
 └── scratch/                       # 중간 산출물 (PNG, JSON 등)
@@ -80,11 +107,12 @@ python3 scripts/eda_pass2.py
 python3 scripts/eda_skin_detail.py
 
 # 4. 검증
-python3 scripts/verify.py
+python3 scripts/verify_celestia.py
 
 # 5. 노트북 빌드
 python3 scripts/build_report.py
 python3 scripts/build_skin_detail_report.py
+python3 scripts/add_descriptions.py
 python3 scripts/add_todo.py
 
 # 6. 실행 + HTML 변환
